@@ -10,16 +10,16 @@ void setup()
 
 void loop()
 {
- delay(50);
+  if (Serial.available() > 0)
+  {
+    char input = Serial.read();
+    if(input == 'a')
+      digitalWrite(RELAY, HIGH);
+    else if (input == 's')
+      digitalWrite(RELAY, LOW);
+    else
+      Serial.println("Valore non valido");
+  }
 }
 
-void serialEvent()
-{
-  char input = Serial.read();
-  if(input == 'a')
-    digitalWrite(RELAY, HIGH);
-  else if (input == 's')
-    digitalWrite(RELAY, LOW);
-  else
-    Serial.println("Valore non valido");
- }
+
