@@ -12,17 +12,18 @@ Raccolta di codice per le diverse stazioni interattive a cura di **limulo.net**.
 * keyboard
 * mouse
 * Arduino Mega
-* 2x LED Pixie
+* 2 LED Pixie
 * Sensore prossimità US(?)
 * sensore prossimità IR(?)
 
 ## Stazione 2
 
-* 1x **Bareconductive TouchBoard**
-* 3x relay
-* 1x microfono ad elettrete
-* 1x interfaccia tattile con vernice conduttiva (12 elettrodi)
-* 1x modulo **BlueSmirf Silver**
+* (**Bareconductive TouchBoard) Arduino UNO
+* 3 relay
+* microfono ad elettrete
+* interfaccia tattile con vernice conduttiva (12 elettrodi)
+* MPR121 (capboard)
+* modulo **BlueSmirf Silver**
 * macbook
 * monitor VGA 16:9
 
@@ -47,9 +48,10 @@ Raccolta di codice per le diverse stazioni interattive a cura di **limulo.net**.
 ## Stazione 7/Accettazione
 
 * donation engine
-* arduino UNO
-* 4x fotoresistori/tilt
+* (arduino UNO) TouchBoard
+* (4x fotoresistori/tilt) pad conduttivo per proximity
 * servo motore 
 * wind chimes
+* peluches(?)
 
 
