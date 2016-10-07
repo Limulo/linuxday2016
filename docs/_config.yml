@@ -1,0 +1,40 @@
+---
+
+port: 4000
+host: 127.0.0.1
+safe: false
+
+
+### site serving configuration ###
+exclude: [CNAME, README.md, .gitignore]
+permalink: /:title ## disables post output
+timezone: null
+lsi: false
+markdown: kramdown
+
+
+### content configuration ###
+title:       "Limulo @ Linux Day 2016"
+keywords:    "LinuxDay, Limulo, Milano, 2016"
+description: "Audio e video. Installazioni audio-visive.Sound design. Interaction design. Arte generativa."
+source_link: "https://github.com/Limulo/linuxday2016"
+favicon:     "img/favicon.ico"
+touch_icon:  "img/apple-touch-icon.png"
+#google_analytics_key: UA-49607422-1 ## put YOUR key here to enable tracking! (blank to disable)
+
+
+### template colors, used site-wide via css ###
+colors:
+  black:     '#111111'
+  white:     '#f8f8f8'
+  blue:      '#49a7e9'
+  green:     '#9bcf2f'
+  purple:    '#c869bf'
+  orange:    '#fab125'
+  turquoise: '#0fbfcf'
+  tab-blue:  '#4755e8'
+  acid: 	 '#a5e847'
+
+kramdown:
+  auto_ids:  false
+
