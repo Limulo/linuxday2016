@@ -1,34 +1,40 @@
-/*
-*
-*  ADAFRUIT MAX4466 + LED
-* ----------------------
-* noise controlled LED switching
-*
-*/
+#define LED_BT 13 // LED pin
+#define LED_MIC 7
 
+//BT
+boolean BT_led_state = LOW; // LED state
+
+//MAX4466
 // audio signal
 unsigned int peakToPeak, signalMax, signalMin;  //mic signal management
 unsigned int sample;                            //mic output
 
 // time variables
-unsigned long tStartMic;
 unsigned long int tStartLed, tActualLed;
 const int tWindowLed = 2000;
+
+unsigned long tStartMic;
 const int tWindowMic = 50;
 
-// LED variables
-#define LED 7
-boolean led_status;
-
+boolean MIC_led_state = LOW; // LED state
 
 void setup() 
 {
-  Serial.begin(115200);
-  
-  led_status = false;
-  pinMode(LED, OUTPUT);
-  digitalWrite(LED, led_status);
+  //LED_BT setup
+  pinMode(LED_BT, OUTPUT);
+  digitalWrite(LED_BT, BT_led_state);
 
+  //LED_MIC setup
+  pinMode(LED_MIC, OUTPUT);
+  digitalWrite(LED_MIC, MIC_led_state);
+  
+  //Serial communication setup
+  Serial.begin(115200); // Serial monitoring
+  delay(1000);
+  Serial1.begin(115200); //Bluethooth monitoring
+  delay(1000);
+
+  // windowing init
   tStartMic= millis();  // Start of sample window
   peakToPeak = 0;       // peak-to-peak level
   signalMax = 0;
@@ -36,12 +42,13 @@ void setup()
 
   tStartLed = tStartMic;
   tActualLed = tStartLed;
+  
 }
-
 
 void loop() 
 {
-// Are we inside the sample window?
+  digitalWrite(LED_BT, BT_led_state);
+  // Are we inside the sample window?
 // if so, then set min and max ...
    if(millis() - tStartMic < tWindowMic)
    {
@@ -64,10 +71,10 @@ void loop()
     if((peakToPeak > 500))
     { 
 
-      if (!led_status)
+      if (!MIC_led_state)
      {
-        led_status = true;
-        digitalWrite(LED, led_status);
+        MIC_led_state = true;
+        digitalWrite(LED_MIC, MIC_led_state);
         tStartLed = millis();
         Serial.println("Led ON");
      }
@@ -88,12 +95,33 @@ void loop()
 
 //Is the LED on? If so, for how long it's been working? Has the predefined LED working time already passed?
 //If so, then give the LED some rest!
-   if(((tActualLed-tStartLed)>=tWindowLed) && (led_status))
+   if(((tActualLed-tStartLed)>=tWindowLed) && (MIC_led_state))
   {
-    led_status = false;
-    digitalWrite(LED, led_status);
+    MIC_led_state = false;
+    digitalWrite(LED_MIC, MIC_led_state);
     Serial.println("Led OFF");
   }
    delay(1);
-   
- }
+
+ 
+}
+
+void serialEvent()
+{
+    // From serial monitor to bluetooth (Communication from Arduino to Processing)
+ char val = Serial.read();
+    Serial1.write(val);
+    //Serial.print("\tcharacter "); Serial.print(c); Serial.println(" written!");
+}
+
+void serialEvent1()
+{
+  // Messages received from Processing over bluetooth
+    char val = Serial1.read();
+    //switch on/off according to action on Processing sketch
+    if (val == '1')
+      BT_led_state = true;
+    else if (val == '0')
+      BT_led_state  =false;
+    //Serial.write(c);
+}
