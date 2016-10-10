@@ -1,6 +1,6 @@
 # Linux Day 2016
 
-Raccolta di codice per le diverse stazioni interattive a cura di **limulo.net**.
+Raccolta di codice per le diverse stazioni interattive a cura di **limulo.net**. Ecco invece il [sito](https://limulo.github.io/linuxday2016/) di riferimento.
 
 ## Stazione 1
 
