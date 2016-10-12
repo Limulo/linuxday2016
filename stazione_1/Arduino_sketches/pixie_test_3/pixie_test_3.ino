@@ -10,8 +10,8 @@
 #include "SoftwareSerial.h"
 #include "Adafruit_Pixie.h"
 
-#define NUMPIXELS 1 // Number of Pixies in the strip
-#define PIXIEPIN  6 // Pin number for SoftwareSerial output
+#define NUMPIXELS 2 // Number of Pixies in the strip
+#define PIXIEPIN  2 // Pin number for SoftwareSerial output
 
 SoftwareSerial pixieSerial(-1, PIXIEPIN);
 
@@ -129,7 +129,6 @@ void loop() {
 }
 
 // CUSTOM ////////////////////////////////////////////////////////////////////////////////////////
-
 uint8_t multiply( uint8_t _cmp, uint8_t _factor)
 {   
     uint8_t cmp = 0;
@@ -159,7 +158,6 @@ void rainbowCycle(uint8_t wait) {
   }
 }
 
-
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
 // 255 / 3 = 85
@@ -174,45 +172,6 @@ uint32_t Wheel(byte WheelPos) {
    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
 }
-
-/*
-void serialEvent()
-{
-  char b = Serial.read();
-  if( b == 'a')
-  {
-    strip.clear();
-    bRainbow = false;
-    Serial.println("Stop rainbow");
-  } 
-  else if( b == 'x' )
-  {
-    bRainbow = true;
-  }
-  else if( b == 's' )
-  {
-    elapsedTime = 0;
-    startTime = millis();
-    D = (elapsedTime * 255) / T;
-    S = 255 - D;
-
-    // red components
-    red_f = multiply( multiply( red_s, S ), brightness_S) + multiply( multiply( red_d, D ), brightness_D);
-
-    // green components
-    green_f = multiply( multiply( green_s, S ), brightness_S) + multiply( multiply( green_d, D ), brightness_D);
-
-    // blue components
-    blue_f = multiply( multiply( blue_s, S ), brightness_S) + multiply( multiply( blue_d, D ), brightness_D);
-    
-    //Serial.print(componentS + componentD); Serial.println(";");
-    Serial.print("[");Serial.print(red_f); 
-    Serial.print(",\t");Serial.print(green_f); 
-    Serial.print(",\t");Serial.print(blue_f); 
-    Serial.println("];");    
-  }
-}
-*/
   
 // SERIAL EVENT ////////////////////////////////////////////////////////////////////////
 // 255, 1 - open 
@@ -220,7 +179,8 @@ void serialEvent()
 void serialEvent()
 {
   byte b = Serial.read();
-  
+
+  // record the address
   if( b >= 128 )
   {
     // the BYTE is an address
@@ -229,64 +189,74 @@ void serialEvent()
   else 
   {
     val = b;
-    if(lastAddr == 128)
-    {
-      // luminosità master
-      brightness_master = val<<1;
-      strip.setBrightness( brightness_master );
-    }
-    else if(lastAddr == 129)
-    {
-      // luminosità Source
-      brightness_S = val<<1;
-    }
-    else if(lastAddr == 130)
-    {
-      // luminosità Destination
-      brightness_D = val<<1;
-    }
-    else if(lastAddr == 140)
-    {
-      // bang ROSSO!
-      bLightSleep = false;
-      elapsedTime = 0;
-      startTime = millis();
-      D = (elapsedTime * 255) / T;
-      S = 255 - D;
+    switch( lastAddr ) 
+    { 
+      case 128:
+        // luminosità master
+        brightness_master = val<<1; // convert a 127 value to a 255 one
+        strip.setBrightness( brightness_master );
+        break;
+        
+      case 129:
+        // luminosità Source
+        brightness_S = val<<1;
+        break;
+        
+      case 130:
+        // luminosità Destination
+        brightness_D = val<<1;
+        break;
 
-      // red components
-      red_f = multiply( multiply( red_s, S ), brightness_S) + multiply( multiply( red_d, D ), brightness_D);
+      case 140:
+        // for this case we don't care the value 
+        // received from serial communication.
+        // bang ROSSO!
+        bLightSleep = false;
+        elapsedTime = 0;
+        startTime = millis();
+        D = (elapsedTime * 255) / T;
+        S = 255 - D;
+  
+        // red components
+        red_f = multiply( multiply( red_s, S ), brightness_S) + multiply( multiply( red_d, D ), brightness_D);
+  
+        // green components
+        green_f = multiply( multiply( green_s, S ), brightness_S) + multiply( multiply( green_d, D ), brightness_D);
+  
+        // blue components
+        blue_f = multiply( multiply( blue_s, S ), brightness_S) + multiply( multiply( blue_d, D ), brightness_D);
+  
+        int i;
+        for(i=0; i<NUMPIXELS; i++)
+        {
+          strip.setPixelColor(i, red_f, green_f, blue_f);
+        }
+        strip.show();
+        delay(10);
+        break;
 
-      // green components
-      green_f = multiply( multiply( green_s, S ), brightness_S) + multiply( multiply( green_d, D ), brightness_D);
+      case 150:
+        T = (val << 5);
+        break;
 
-      // blue components
-      blue_f = multiply( multiply( blue_s, S ), brightness_S) + multiply( multiply( blue_d, D ), brightness_D);
+      case 240:
+        // for this case we don't care the value 
+        // received from serial communication.
+        bLightSleep = true;
+        strip.clear();
+        break;
 
-      int i;
-      for(i=0; i<NUMPIXELS; i++)
-      {
-        strip.setPixelColor(i, red_f, green_f, blue_f);
-      }
-      strip.show();
-      delay(10);
+      case 255:
+        if( val == 1)
+          bSendSerial = true;
+        else
+          bSendSerial = false;
+        break;
+        
+      default:
+        // do nothing
+        break;
     }
-    else if(lastAddr == 150)
-    {
-      T = (val << 5);
-    }
-    else if(lastAddr == 240)
-    {
-      bLightSleep = true;
-      strip.clear();
-    }
-    else if( lastAddr == 255 ) 
-    {
-      if( val == 1)
-        bSendSerial = true;
-      else
-        bSendSerial = false;
-    } 
   }
 }
 
