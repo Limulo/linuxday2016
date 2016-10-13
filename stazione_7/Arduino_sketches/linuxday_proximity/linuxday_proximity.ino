@@ -23,56 +23,47 @@
 #include <SdFat.h>
 #include <SdFatUtil.h> 
 #include <SFEMP3Shield.h>
-
 SFEMP3Shield MP3player;
 byte result;
-
+SdFat sd; // sd card instantiation
 
 #define REPLAY_MODE TRUE  // FALSE = toggle; TRUE = repeat
 
 // 1st electrode only
 #define ELECTRODE 0
 
-unsigned int chimesDuration = 1000;
-long chimesStatTime;
-
-// sd card instantiation
-SdFat sd;
-
-boolean bChimesStatus = false;
+// servo chymes
+unsigned int chimesDuration = 1000; // tempo di rotazione del servo collegato ai chymes
+long chimesStartTime; // tempo iniziale per il compute dell'intervallo di funzionamento deu chymes
+boolean bChimesStatus = false; // servo ON/OFF
 
 
 // SETUP ////////////////////////////////////////////////////////////////////////////
 void setup()
 {  
-  Serial.begin(57600);
-  
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, bChimesStatus);
-   
-  //while (!Serial) ; {} //uncomment when using the serial monitor 
+  Serial.begin(9600);
+  while (!Serial) ; {} //uncomment when using the serial monitor 
 
   if(!sd.begin(SD_SEL, SPI_HALF_SPEED)) sd.initErrorHalt();
 
   if(!MPR121.begin(MPR121_ADDR)) 
-    Serial.println("error setting up MPR121");
- 
+    Serial.println("error setting up MPR121"); 
   MPR121.setInterruptPin(MPR121_INT);
-
-  MPR121.setTouchThreshold(8);
+  MPR121.setTouchThreshold(6);
   MPR121.setReleaseThreshold(4);  
 
   result = MP3player.begin();
-  MP3player.setVolume(10,10);
- 
+  MP3player.setVolume(0, 0);
   if(result != 0) 
   {
     Serial.print("Error code: ");
     Serial.print(result);
     Serial.println(" when trying to start MP3 player");
   }
-
-  chimesStatTime = - chimesDuration; // don't start playing chimes the first loop  
+  
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, bChimesStatus);
+  chimesStartTime = - chimesDuration; // don't start playing chimes the first loop  
 }
 
 // LOOP /////////////////////////////////////////////////////////////////////////////
@@ -81,6 +72,7 @@ void loop()
   readTouchInputs();
   playChimes();
   digitalWrite( LED_BUILTIN, bChimesStatus );
+  delay(150);
 }
 
 
@@ -89,7 +81,7 @@ void readTouchInputs()
   if(MPR121.touchStatusChanged())
   {
     MPR121.updateTouchData();
-    if(MPR121.getNumTouches()<=1)
+ //   if(MPR121.getNumTouches()<=1)
     { 
       if(MPR121.isNewTouch(ELECTRODE))
       {     
@@ -97,22 +89,28 @@ void readTouchInputs()
         if( !bChimesStatus )
         {
           bChimesStatus = true;
-          chimesStatTime = millis();
+          chimesStartTime = millis();
           //servo.write( 0 );
           MP3player.playTrack(ELECTRODE);
+          //Serial.println(" nuovo tocco\tchimes falso");
+
         }
-        else
+ /*       else // un nuovo tocco mentre stiamo ancora gestendo il precedente
         {
         //   MP3player.stopTrack();
         //   MP3player.playTrack(ELECTRODE);
-        }        
+          Serial.println(" nuovo tocco\tchimes vero");
+        } 
+ */       
       }
-      else
+      else //non c'è un nuovo tocco
       {
         if(MPR121.isNewRelease(ELECTRODE))
         {
          // led_status = false;
          // digitalWrite(LED_BUILTIN, led_status);
+          //Serial.println(" nuovo rilascio");
+
         }
       }
     }
@@ -121,14 +119,16 @@ void readTouchInputs()
 
 void playChimes() 
 {
-  if( millis() - chimesStatTime < chimesDuration)
+  if( millis() - chimesStartTime < chimesDuration)
   {
     // play chimes 
+    Serial.println("\tchimes ON");
   }
   else
   {
     bChimesStatus = false;
     //servo.write( 90 );
+    Serial.println("\tchimes OFF");
   }
 
 }
