@@ -1,0 +1,6 @@
+#N canvas 387 332 430 355 10;
+#X obj 15 43 master_serial;
+#X obj 15 18 r to-serial;
+#X obj 213 41 dimmer;
+#X obj 14 146 light-channel 140;
+#X connect 1 0 0 0;

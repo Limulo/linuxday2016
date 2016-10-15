@@ -6,6 +6,6 @@ After some experiments where we wanted to make the board emit a sound and drive 
 Fortunately we were able to make everything work since PWM digital pins **10, 11** and **13** behaves noramlly.
 
 ## LINKS and REFERENCES
-* [Sparkfun MP3 shield](https://learn.sparkfun.com/tutorials/mp3-player-shield-hookup-guide-v15)
+* [Sparkfun MP3 shield](https://learn.sparkfun.com/tutorials/mp3-player-shield-hookup-guide-v15);
 * an (old) TouchBoard [schematic](https://cdn.sparkfun.com/datasheets/Dev/Arduino/Boards/touch-board-schematic.pdf) and [datasheet](https://cdn.sparkfun.com/datasheets/Dev/Arduino/Boards/TouchBoard_TechDataSheet.pdf);
 

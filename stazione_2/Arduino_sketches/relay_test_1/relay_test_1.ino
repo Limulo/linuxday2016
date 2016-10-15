@@ -1,4 +1,4 @@
-#define RELAY 8
+#define RELAY 2
 
 void setup() 
 {
