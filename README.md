@@ -1,57 +1,54 @@
 # Linux Day 2016
 
-Raccolta di codice per le diverse stazioni interattive a cura di **limulo.net**. Ecco invece il [sito](https://limulo.github.io/linuxday2016/) di riferimento.
+In occasione del [LinuxDay 2016](http://www.linuxdaymilano.org/) di Milano, [limulo.net](http://www.limulo.net) ha preparato una serie di stazioni interattive per mostrare le diverse capacità dei software e delle piattaforme **libere/open source** per applicazioni multimediali. 
+
+In questo repository è raccolto tutto il codice sorgente sviluppato per l'occazione. Ecco invece il [sito](https://limulo.github.io/linuxday2016/) di riferimento.
+
+## Front Desk (a.k.a. Stazione 7)
+
+* Bareconductive TouchBoard
+* pad conduttivo per proximity
+* 2x servo motore 
+* wind chimes
+* peluche
 
 ## Stazione 1
 
 * Videotavolo
 * mixer
-* impianto audio 2.1 di Andrea
+* impianto audio 2.1
 * monitor VGA 4:3
-* nicolinux
-* keyboard
-* mouse
-* Arduino Mega
+* PC fisso Dell #1
+* keyboard & mouse
+* Arduino UNO
 * 2 LED Pixie
-* Sensore prossimità US(?)
-* sensore prossimità IR(?)
 
 ## Stazione 2
 
-* (**Bareconductive TouchBoard) Arduino UNO
+* Arduino Mega
 * 3 relay
 * microfono ad elettrete
-* interfaccia tattile con vernice conduttiva (12 elettrodi)
 * MPR121 (capboard)
-* modulo **BlueSmirf Silver**
-* macbook
-* monitor VGA 16:9
+* interfaccia tattile con vernice conduttiva (12 elettrodi)
+* modulo _BlueSmirf Silver_
+* macbook #1
+* monitor VGA 4:3
 
 ## Stazione 3/4
 
-* valinux
-* keyboard
-* mouse
-* monitor Dell
+* PC fisso Dell #2
+* keyboard & mouse
+* monitor Dell 16:9
 * raspberryPi
 
 ## Stazione 5
 
-* piccolinux + GEM + webcam (?)
-* Kinect (?)
+* Netbook Linux + GEM + webcam
 
 ## Stazione 6
 
-* macbook
+* macbook #2
 * monitor VGA 4:3
 
-## Stazione 7/Accettazione
-
-* donation engine
-* (arduino UNO) TouchBoard
-* (4x fotoresistori/tilt) pad conduttivo per proximity
-* servo motore 
-* wind chimes
-* peluches(?)
 
 
