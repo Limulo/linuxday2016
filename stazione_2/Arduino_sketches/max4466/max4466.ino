@@ -1,24 +1,32 @@
+#define MIC A0
+
 const int sampleWindow = 50; // Sample window width in mS (50 mS = 20Hz)
 unsigned int sample;
- 
+
+
+
+
+// SETUP //////////////////////////////////////////////////////////////////////
 void setup() 
 {
    Serial.begin(9600);
 }
- 
- 
+
+
+// LOOP ///////////////////////////////////////////////////////////////////////
 void loop() 
 {
    unsigned long startMillis= millis();  // Start of sample window
-   unsigned int peakToPeak = 0;   // peak-to-peak level
- 
+   unsigned int peakToPeak = 0;          // peak-to-peak level
+  
    unsigned int signalMax = 0;
    unsigned int signalMin = 1024;
  
    // collect data for 50 mS
    while (millis() - startMillis < sampleWindow)
    {
-      sample = analogRead(0);
+      sample = analogRead( MIC );
+      //Serial.print("\t"); Serial.print(sample); Serial.println(";");
       if (sample < 1024)  // toss out spurious readings
       {
          if (sample > signalMax)
@@ -33,6 +41,10 @@ void loop()
    }
    peakToPeak = signalMax - signalMin;  // max - min = peak-peak amplitude
    double volts = (peakToPeak * 3.3) / 1024;  // convert to volts
- 
-   Serial.println(volts);
+
+   Serial.print("[");
+   Serial.print(signalMin); Serial.print(" - ");
+   Serial.print(signalMax); Serial.print("] ");
+   Serial.print(peakToPeak); Serial.print(" - ");
+   Serial.print(volts); Serial.println(";");
 }

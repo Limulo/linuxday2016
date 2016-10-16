@@ -1,4 +1,4 @@
-#OVERVIEW
+# OVERVIEW
 La stazione 2 si compone di alcuni moduli satelliti gestiti da un Arduino Mega.
 Nello specifico Arduino Mega controlla tre relay che pilotano l'accensione/spegnimento di oggetti connessi ad alimentazione.
 I relay vengono attivati: 
@@ -13,12 +13,12 @@ I relay vengono attivati:
 * moduli relay
 * capboard
 
-#SETUP
+# SETUP
 
-##Prerequisiti
+## Prerequisiti
 * il computer ha attiva la comunicazione BlueTooth ed è visibile
 
-##BlueTooth
+## BlueTooth
 Per impostare correttamente la comunicazione BT tra un computer e Arduino si deve seguire questa procedura:
 * Se e' la **prima** connessione mai stabilita tra il Blue Smirf e il computer, accedere alla modalità _command_ dal monitor seriale di Arduino, digitando il comando `$$$`. 
   Ricordarsi di due cose importanti:
@@ -33,3 +33,17 @@ Per impostare correttamente la comunicazione BT tra un computer e Arduino si dev
 **NB**
 Si può controllare la connessione bluetooth sia da Processing con libreria _Serial_, sia tramite software, come _Coolterm_, sia da terminale.
 Per approfondimenti può essere utile [questo tutorial](https://learn.sparkfun.com/tutorials/terminal-basics/command-line-windows-mac-linux). 
+
+
+# WORKFLOW
+
+* **1)** collegare i 3 dispositivi 220V alle 3 prese _relays_ delal centralina;
+* **2)** connettere la **capboard** e il **microfono** alla centralina;
+* **3)** connettere la centralina all'alimentazione 220V;
+* **4)** alimentare la centralina usando un trasformatore 9V;
+* **5)** sul computer macbook attivare il _bluetooth_ (pairing e porta seriale); così facendo il modulo _BlueSmirf_ dovrebbe segnalare luce verde!
+* **6)** Lanciare lo sketch di **Processing**
+
+## NOTA BENE
+dopo un tot di tempo che la connessione BlueTooth su mac non viene usata, questa viene interrotta in automatico
+Per riattivarla recarsi nelle _Preferenze di Sistema / BlueTooth --> modifica porte seriali_

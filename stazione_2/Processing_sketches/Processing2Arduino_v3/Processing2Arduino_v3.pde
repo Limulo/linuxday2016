@@ -12,7 +12,7 @@ void setup()
   background(120);
   
   //println(Serial.list());
-  bluetooth = new Serial(this, Serial.list()[0], 115200);
+  bluetooth = new Serial(this, "/dev/tty.blue_limulo-RNI-SPP", 115200);
   
 }
 

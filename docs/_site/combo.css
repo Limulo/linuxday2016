@@ -536,6 +536,30 @@ html { box-sizing: border-box; }
   
   
   
+  nav .p-stazione-2 { border-color: #9bcf2f; }
+  #stazione-2 { background-color: #9bcf2f !important; color: #111111; }
+  #stazione-2 a { color: #111111; }
+  #stazione-2 .sectiondivider { color: #9bcf2f; }
+
+  
+  
+  
+  nav .p-stazione-1 { border-color: #fab125; }
+  #stazione-1 { background-color: #fab125 !important; color: #111111; }
+  #stazione-1 a { color: #111111; }
+  #stazione-1 .sectiondivider { color: #fab125; }
+
+  
+  
+  
+  nav .p-stazione-7 { border-color: #c869bf; }
+  #stazione-7 { background-color: #c869bf !important; color: #111111; }
+  #stazione-7 a { color: #111111; }
+  #stazione-7 .sectiondivider { color: #c869bf; }
+
+  
+  
+  
   nav .p-tools { border-color: #49a7e9; }
   #tools { background-color: #49a7e9 !important; color: #f8f8f8; }
   #tools a { color: #f8f8f8; }
