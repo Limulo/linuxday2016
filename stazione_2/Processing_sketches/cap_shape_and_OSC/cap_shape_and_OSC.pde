@@ -25,7 +25,7 @@ color bgr;
 // SETUP ////////////////////////////////////////////////////////////////////////////
 void setup()
 {
-  size(1024, 960);  
+  size(1024, 640);  
   frameRate(30);
   smooth();
   
@@ -46,7 +46,7 @@ void setup()
    * and the port of the remote location address are the same, hence you will
    * send messages back to this sketch.
    */
-  myRemoteLocation = new NetAddress( "127.0.0.1", port+1 );
+  myRemoteLocation = new NetAddress( IPaddr, port+1 );
   
   /* OTHER **************************************************************************/
   shapes = new Shape[ N_ELECTRODES ];
