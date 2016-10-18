@@ -2,7 +2,8 @@ import processing.serial.*;
 Serial s_port;
 boolean bSerialListen = false;
 
-final int N_ELECTRODES = 9;
+// number of electrodes to plot
+final int N_ELECTRODES = 4;
 
 Graph[] graphs;
 
@@ -31,13 +32,12 @@ void setup()
   s_port = new Serial(this, Serial.list()[0], 115200);
   s_port.buffer( 2 ); //every 2 byte call serialEvent
 
-  
   int hGraph = height / N_ELECTRODES;
   
   graphs = new Graph[ N_ELECTRODES ];
   for(int i=0; i<N_ELECTRODES; i++)
   {
-    graphs[i] = new Graph( 0, hGraph*i, width, hGraph, 100);
+    graphs[i] = new Graph(i, 0, hGraph*i, width, hGraph, 100);
   }
   
   USL = (int)map(USL, 0, 1023, hGraph, 0);
@@ -67,46 +67,56 @@ void draw()
 // SERIAL EVENT /////////////////////////////////////////////////////////////////////
 // serialEvent is called only when we have 2 byte waiting to be red in the buffer.
 void serialEvent( Serial s )
-{
-  
+{  
   try{
     int addr = s.read() - 128;
-  int v = -1;
-  
-  // what graph?
-  int graphIndex = addr / 3; //each graph uses 3 addresses and three values
-  
-  switch( addr % 3) {
-    case 0:
-      v = s.read() * 8;
-      //print("#" + addr + ", " + v + "; ");
-      graphs[ graphIndex ].setBase( v );
-      break;
-      
-    case 1:
-      v = s.read() * 8;
-      //print("#" + addr + ", " + v + "; ");
-      graphs[ graphIndex ].setFilt( v );
-      break;
-      
-    case 2:
-      v = s.read();
-      //print("#" + addr + ", " + v + "; ");
-      
-      if( v == 1 )
-        graphs[ graphIndex ].setTouch( true );
-      else
-        graphs[ graphIndex ].setTouch( false );
-
-      graphs[ graphIndex ].update();
-             
-      break;
-    default:
-      // do nothing
-      break;
-  }
+    int v = -1;
+    
+    // what graph?
+    int graphIndex = addr / 3; //each graph uses 3 addresses and three values
+    
+    if( graphIndex < N_ELECTRODES )
+    {
+      switch( addr % 3) {
+        case 0:
+          v = s.read() * 8;
+          //print("#" + addr + ", " + v + "; ");
+          graphs[ graphIndex ].setBase( v );
+          break;
+          
+        case 1:
+          v = s.read() * 8;
+          //print("#" + addr + ", " + v + "; ");
+          graphs[ graphIndex ].setFilt( v );
+          break;
+          
+        case 2:
+          v = s.read();
+          //print("#" + addr + ", " + v + "; ");
+          
+          if( v == 1 )
+            graphs[ graphIndex ].setTouch( true );
+          else
+            graphs[ graphIndex ].setTouch( false );
+    
+          graphs[ graphIndex ].update();
+                 
+          break;
+        default:
+          // do nothing
+          break;
+      }
+    }
   }catch(Exception e){
     e.printStackTrace();
+  }
+  
+  // in case we want to read less than 9 electrodes, we have to
+  // flush all the byte from other electrodes
+  int remaining_electrodes = 9-N_ELECTRODES;
+  for(int i=0;i<remaining_electrodes*6; i++)
+  {
+    int b = s.read();
   }
 }
 

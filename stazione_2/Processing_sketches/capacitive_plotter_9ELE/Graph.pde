@@ -1,5 +1,6 @@
 class Graph
 {
+  int index;
   int x, y;
   int w, h;
  
@@ -15,8 +16,9 @@ class Graph
   boolean bTouch;
   
   /* CONTRUCTOR **********************************************************/
-  Graph(int _x, int _y, int _w, int _h, int _N )
+  Graph(int _idx, int _x, int _y, int _w, int _h, int _N )
   {
+    index = _idx;
     x = _x;
     y = _y;
     w = _w;
@@ -75,11 +77,11 @@ class Graph
     pushStyle();
     noStroke();
     fill( base, 120 );
-    int offset = y;
+    
     for(int i = 0; i < N; i++)
     {
       int delta = baseline[i] - filtered[i];
-      rect(i*wValue, filtered[i] + offset, wValue, delta);
+      rect(i*wValue, filtered[i] + y, wValue, delta);
     }
     popStyle();
   }
@@ -90,9 +92,8 @@ class Graph
     stroke(base);
     strokeWeight(2);
 
-    int offset = y;
     for(int i = 0; i < N; i++)
-      line(i*wValue, baseline[i] + offset, (i+1)*wValue, baseline[i] + offset);
+      line(i*wValue, baseline[i] + y, (i+1)*wValue, baseline[i] + y);
    
     popStyle();
   }
@@ -103,10 +104,9 @@ class Graph
     stroke(filt);
     strokeWeight(2);
     fill(filt);
-    
-    int offset = y;
+
     for(int i = 0; i < N; i++)
-      ellipse( (i*wValue)+(wValue/2), filtered[i]+offset, 2, 2);
+      ellipse( (i*wValue)+(wValue/2), filtered[i]+y, 2, 2);
     
     popStyle();
   }
@@ -116,24 +116,24 @@ class Graph
     pushStyle();
     stroke(lines);
     strokeWeight(1);
-    
-    int offset = y;
-    line(0, USL+offset, w, USL+offset);
-    line(0, LSL+offset, w, LSL+offset);
-    line(0, TAR+offset, w, TAR+offset);
+
+    line(0, USL+y, w, USL+y);
+    line(0, LSL+y, w, LSL+y);
+    line(0, TAR+y, w, TAR+y);
     
     textAlign(LEFT);
-    text("USL", 10, USL+offset-2);
-    text("LSL", 10, LSL+offset-2);
-    text("TAR", 10, TAR+offset-2);
+    text("USL", 10, USL+y-2);
+    text("LSL", 10, LSL+y-2);
+    text("TAR", 10, TAR+y-2);
     
-    text("Base: "+vBase, 10, 20+offset);
-    text("Filt: "+vFilt, 10, 40+offset);
-    text("Dlta: "+vDelta, 10, 60+offset);
-    text("best: "+bestDelta, 10, 80+offset);
+    text("Base: "+vBase+"; Filt: "+vFilt+ "; Dlta: "+vDelta+ "; best: "+bestDelta, 10, 20+y);
+    //text("Base: "+vBase, 10, 20+y);
+    //text("Filt: "+vFilt, 10, 40+y);
+    //text("Dlta: "+vDelta, 10, 60+y);
+    //text("best: "+bestDelta, 10, 80+y);
     
     textAlign(RIGHT);
-    text("Graph 0", w, offset+20);
+    text("ELECTRODE "+index, w, y+20);
     
     popStyle();
   }
@@ -147,8 +147,8 @@ class Graph
       fill( touch );
     else 
       noFill();
-    int offset = y;
-    ellipse(width - r - 5, 45 + offset, r, r);
+
+    ellipse(width - r - 5, 45 + y, r, r);
     popStyle();  
   }
   
