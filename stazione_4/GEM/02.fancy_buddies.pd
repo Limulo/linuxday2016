@@ -1,28 +1,28 @@
-#N canvas 618 95 731 747 10;
+#N canvas 267 238 1198 747 10;
 #X obj 297 324 fancyA;
-#X msg 23 20 create;
-#X msg 39 42 destroy;
-#X obj 63 71 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0 1
+#X msg 21 100 create;
+#X msg 37 122 destroy;
+#X obj 61 151 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0 1
 ;
-#X obj 79 105 loadbang;
-#X obj 20 157 gemwin 50;
+#X obj 77 185 loadbang;
+#X obj 18 237 gemwin 50;
 #X obj 257 232 + 1;
 #X obj 222 231 int;
 #X obj 222 255 select 360;
 #X msg 190 232 0;
-#X obj 451 141 vsl 15 128 0 2 0 0 empty empty empty 0 -8 0 8 -262144
--1 -1 12700 1;
+#X obj 472 71 vsl 15 128 0 2 0 0 empty empty scale -4 -8 0 8 -262144
+-1 -1 0 1;
 #X obj 351 131 + 1;
 #X obj 316 130 int;
 #X msg 284 131 0;
-#X obj 222 165 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 316 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 412 154 tgl 40 0 empty empty YZ_rot 2 -10 0 10 -262144 -1 -1
+0 1;
+#X obj 411 82 tgl 40 0 empty empty X_rot 4 -10 0 10 -262144 -1 -1 0
 1;
 #X obj 316 105 metro 20;
 #X obj 316 154 select 180;
 #X msg 175 60 reset;
-#X msg 78 129 color 0 0 0 0;
+#X msg 76 209 color 0 0 0 0;
 #X obj 297 354 fancyA;
 #X obj 297 384 fancyA;
 #X obj 297 413 fancyA;
@@ -51,6 +51,13 @@
 #X obj 367 681 fancyA;
 #X obj 367 711 fancyA;
 #X obj 222 206 metro 10;
+#X obj 414 27 tgl 15 0 empty empty ON/OFF -5 -5 0 10 -262144 -1 -256513
+0 1;
+#X obj 169 20 sel 1;
+#X obj 462 28 tgl 15 0 empty empty start -5 -5 0 10 -262144 -1 -1 0
+1;
+#X obj 18 260 loadbang;
+#X msg 18 284 \; renderinit 0;
 #X connect 0 0 20 0;
 #X connect 0 1 20 1;
 #X connect 0 2 20 2;
@@ -155,3 +162,9 @@
 #X connect 45 1 46 1;
 #X connect 45 2 46 2;
 #X connect 47 0 7 0;
+#X connect 48 0 49 0;
+#X connect 49 0 1 0;
+#X connect 49 1 2 0;
+#X connect 50 0 3 0;
+#X connect 51 0 52 0;
+#X coords 0 -1 1 1 100 200 2 400 10;
