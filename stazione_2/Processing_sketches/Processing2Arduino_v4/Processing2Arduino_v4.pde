@@ -23,13 +23,14 @@ void setup()
   //println(Serial.list());
   bluetooth = new Serial(this, "/dev/tty.blue_limulo-RNI-SPP", 115200);
   
-  button = new Button(200, 200, 100);
+  button = new Button(100, 100, 100);
   
 }
 
 // DRAW ////////////////////////////////////////////////////////////////////////////
 void draw()
 {   
+  background(120);
   button.display();
 }
 

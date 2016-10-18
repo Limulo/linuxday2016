@@ -1,3 +1,60 @@
+/* 
+ *  Use this sketch with this Processing Code
+
+import processing.serial.*;
+
+Serial bluetooth;
+boolean lit = false;
+
+color base = color(200, 200, 0);
+color pressed = color(120, 0, 120);
+
+void setup()
+{
+  size(640, 480);
+  background(120);
+  
+  //println(Serial.list());
+  bluetooth = new Serial(this, "/dev/tty.blue_limulo-RNI-SPP", 115200);
+  
+}
+
+void draw()
+{   
+  noStroke();
+  if(lit)
+    fill(pressed);
+  else
+    fill(base);
+  rect(50, 50, 80, 80);
+}
+
+void mousePressed()
+{
+  if((isInRange(mouseX, 50, 130)) && (isInRange(mouseY, 50, 130)))
+  {
+    if(lit)
+    {
+      lit = false;
+      bluetooth.write('0');
+    }
+    else
+    {
+      lit = true;
+      bluetooth.write('1');
+    }
+  }
+}
+
+boolean isInRange(int val, int dim1, int dim2)
+{
+  if(val >= dim1 && val <= dim2)
+    return true;
+  else
+    return false;
+}
+*/
+
 #include "Mic.h"
 #include "Relay.h"
 

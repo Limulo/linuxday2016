@@ -1,16 +1,16 @@
 class Button
 {
-  int x, y, l;
+  int x, y, r;
   boolean bInside, bLit;
   
   color black = color(0);
   color lit = color(255, 255, 0);
   
-  Button(int _x, int _y, int _l)
+  Button(int _x, int _y, int r)
   {
     x = _x;
     y = _y;
-    l = _l;
+    r = _r;
     bInside = false;
     bLit = false;
   }
@@ -21,7 +21,7 @@ class Button
     pushMatrix();
     translate(x, y);
     
-    stroke(balck);
+    stroke(black);
     strokeWeight( 8 );
     
     if( bLit )
@@ -29,16 +29,16 @@ class Button
     else
       noFill();
       
-    rectMode(CENTER);
-    rect( 0, 0, l, l);
+    ellipse( 0, 0, r, r);
     popMatrix();
     popStyle();
   }
   
-  void update(int _x, int _y)
+  boolean update(int _x, int _y)
   {
     // is mouse inside?
-    if( (_x > x-l/2 && _x < x+l/2) && (_y>y-l/2 && _y<y+l/2) )
+    //if( (_x > x-l/2 && _x < x+l/2) && (_y>y-l/2 && _y<y+l/2) )
+    if( dist(x, y, _x, _y)<r )
       bInside = true;
     else
       bInside = false;
