@@ -38,7 +38,7 @@ void setup()
   println(Serial.list());  
   // "/dev/tty/blue_limulo-RNI-SPP"
   // is the name the Arduino bluetooth modulo has on Mac OS X . 
-  s_port = new Serial(this, "/dev/tty/blue_limulo-RNI-SPP", 115200);
+  s_port = new Serial(this, "/dev/tty.blue_limulo-RNI-SPP", 115200);
   s_port.buffer( 2 ); //every 2 byte call serialEvent
   
   /* OSC ****************************************************************************/
@@ -61,7 +61,7 @@ void setup()
     shapes[i] = new Shape(i, 500);
   }
   
-  button = new Button(100, 100, 100);
+  button = new Button(100, 100, 50);
   
   font = loadFont("Monospaced-32.vlw");
   textFont(font, 14);
@@ -133,20 +133,7 @@ void serialEvent( Serial s )
           break;
       }
       myMessage.add( v );
-     
-      /*
-      if( v == 1 )
-      {
-        //println("Send OSC: #"+electrodeIndex+" ON;");
-        myMessage.add( v );
-      }
-      else
-      {
-        //println("Send OSC: #"+electrodeIndex+" OFF;");
-        myMessage.add( v );
-      }
-      */
-      
+           
       /* send the message */
       oscP5.send( myMessage, myRemoteLocation );
     }
@@ -188,12 +175,6 @@ void keyPressed()
   else if (key == 'r' || key == 'R')
   {
     s_port.write('r');
-    /*
-    for(int i=0; i<N_ELECTRODES; i++)
-    {
-      graphs[i].reset();
-    }
-    */
   }
 }
 
