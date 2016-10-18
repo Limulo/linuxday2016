@@ -1,29 +1,26 @@
-#N canvas 297 95 1154 755 10;
-#X obj 721 9 cnv 15 150 120 empty empty empty 20 12 0 14 -150275 -66577
+#N canvas 445 110 1154 755 10;
+#X obj 721 9 cnv 15 160 120 empty empty empty 20 12 0 14 -150275 -66577
 0;
-#X msg 28 11 create;
-#X msg 45 36 destroy;
-#X obj 85 90 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0 1
+#X msg 55 95 destroy;
+#X obj 96 220 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0 1
 ;
-#X msg 67 62 reset;
-#X obj 28 157 loadbang;
-#X msg 28 181 \; renderinit 0;
-#X obj 28 125 gemwin 50;
-#X obj 195 54 gemhead;
-#X obj 195 177 pix_image;
+#X msg 78 192 reset;
+#X obj 39 287 loadbang;
+#X msg 39 311 \; renderinit 0;
+#X obj 39 255 gemwin 50;
+#X obj 195 189 gemhead;
+#X obj 195 312 pix_image;
 #X obj 780 29 tgl 15 0 empty renderinit start 0 -6 0 12 -262144 -1
 -1 0 1;
-#X msg 260 76 open \$1;
-#X obj 260 55 openpanel;
-#X obj 260 37 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+#X msg 260 211 open \$1;
+#X obj 260 190 openpanel;
+#X obj 260 172 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
 -1;
-#X obj 352 55 gemhead;
-#X obj 352 178 pix_image;
-#X obj 352 36 tgl 15 0 empty renderinit empty 0 -6 0 8 -262144 -1 -1
-0 1;
-#X msg 417 77 open \$1;
-#X obj 417 56 openpanel;
-#X obj 417 38 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+#X obj 352 190 gemhead;
+#X obj 352 313 pix_image;
+#X msg 417 212 open \$1;
+#X obj 417 191 openpanel;
+#X obj 417 173 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
 -1;
 #N canvas 165 364 561 386 blending 0;
 #X obj 28 65 inlet;
@@ -135,106 +132,120 @@ image and will refresh the output when banged.;
 #X connect 12 1 16 0;
 #X connect 13 0 11 0;
 #X connect 16 0 9 0;
-#X restore 386 267 pd blending;
-#X msg 610 466 pix_multiply;
-#X msg 611 441 pix_diff;
-#X msg 609 417 pix_subtract;
-#X msg 609 392 pix_add;
-#X msg 610 369 pix_composite;
-#X obj 386 385 pix_texture;
-#X obj 386 413 rotateXYZ;
-#X floatatom 411 310 5 0 0 0 - - -, f 5;
-#X msg 460 350 quality \$1;
-#X obj 460 331 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+#X restore 195 384 pd blending;
+#X msg 438 464 pix_multiply;
+#X msg 439 439 pix_diff;
+#X msg 437 415 pix_subtract;
+#X msg 437 390 pix_add;
+#X msg 438 367 pix_composite;
+#X obj 195 502 pix_texture;
+#X obj 195 530 rotateXYZ;
+#X floatatom 220 427 5 0 0 0 - - -, f 5;
+#X msg 269 467 quality \$1;
+#X obj 269 448 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
 1;
-#X obj 386 436 translate;
-#X text 255 269 Look inside---->;
-#X obj 386 469 square 4;
-#X msg 274 149 open ../../06.data/02.pix/fortress.jpg;
-#X msg 194 685 open /home/vale/PureData_patches/GEM/GEm_lectures_PdJoanneum/06.data/02.pix/blockhouse.jpg
-;
-#X msg 350 628 open /home/vale/PureData_patches/GEM/GEm_lectures_PdJoanneum/06.data/02.pix/fortress.jpg
-;
+#X obj 195 553 translate;
+#X text 64 386 Look inside---->;
+#X obj 195 586 square 4;
 #X obj 731 49 bng 15 250 50 0 empty empty load_file1 17 7 0 10 -262144
 -1 -1;
 #X obj 732 70 bng 15 250 50 0 empty empty load_file2 17 7 0 10 -262144
 -1 -1;
-#X obj 733 90 bng 15 250 50 0 empty empty preset 17 7 0 10 -262144
--1 -1;
 #X obj 730 27 tgl 15 0 empty empty ON/OFF -5 -5 0 10 -262144 -1 -1
 0 1;
-#X obj 92 2 sel 1;
-#X obj 826 36 vradio 15 1 0 5 empty empty FX 0 -8 0 10 -262144 -1 -1
-4;
-#X obj 760 225 sel 0;
-#X obj 792 255 sel 1;
-#X obj 834 291 sel 2;
-#X obj 867 321 sel 3;
-#X obj 898 349 sel 4;
-#X obj 759 246 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 49 21 sel 1;
+#X obj 857 28 vradio 15 1 0 5 empty empty FX 0 -8 0 10 -262144 -1 -1
+1;
+#X obj 537 241 sel 0;
+#X obj 569 261 sel 1;
+#X obj 601 282 sel 2;
+#X obj 633 302 sel 3;
+#X obj 665 322 sel 4;
+#X obj 537 262 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 791 283 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 569 281 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 832 317 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 601 302 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 870 354 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 633 322 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 898 378 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 665 343 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X connect 1 0 7 0;
-#X connect 2 0 7 0;
-#X connect 3 0 7 0;
-#X connect 4 0 7 0;
-#X connect 5 0 6 0;
-#X connect 8 0 9 0;
-#X connect 9 0 20 0;
+#X msg 38 70 create;
+#X obj 736 100 tgl 20 0 empty empty auto 24 7 0 12 -262144 -1 -1 0
+1;
+#X floatatom 803 107 4 100 1000 2 tempo - -, f 4;
+#X obj 736 215 i;
+#X obj 782 214 + 1;
+#X msg 702 184 0;
+#X floatatom 921 49 5 0 0 0 - - -, f 5;
+#X obj 736 183 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 736 237 >= 4;
+#X obj 787 287 sel 1;
+#X obj 791 315 t b;
+#X obj 736 163 metro 1000;
+#X connect 1 0 6 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 0;
+#X connect 4 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 18 0;
+#X connect 9 0 2 0;
 #X connect 10 0 8 0;
-#X connect 11 0 9 0;
+#X connect 11 0 10 0;
 #X connect 12 0 11 0;
-#X connect 13 0 12 0;
-#X connect 14 0 15 0;
-#X connect 15 0 20 1;
-#X connect 16 0 14 0;
-#X connect 17 0 15 0;
-#X connect 18 0 17 0;
-#X connect 19 0 18 0;
-#X connect 20 0 26 0;
-#X connect 21 0 20 2;
-#X connect 22 0 20 2;
-#X connect 23 0 20 2;
-#X connect 24 0 20 2;
-#X connect 25 0 20 2;
-#X connect 26 0 27 0;
-#X connect 27 0 31 0;
-#X connect 28 0 27 3;
-#X connect 28 0 27 1;
-#X connect 28 0 27 2;
-#X connect 29 0 26 0;
-#X connect 30 0 29 0;
-#X connect 31 0 33 0;
-#X connect 34 0 15 0;
-#X connect 35 0 9 0;
-#X connect 36 0 15 0;
-#X connect 37 0 12 0;
-#X connect 38 0 18 0;
-#X connect 39 0 36 0;
-#X connect 39 0 35 0;
-#X connect 40 0 41 0;
-#X connect 41 0 1 0;
-#X connect 41 1 2 0;
-#X connect 42 0 43 0;
-#X connect 43 0 48 0;
-#X connect 43 1 44 0;
-#X connect 44 0 49 0;
-#X connect 44 1 45 0;
-#X connect 45 0 50 0;
-#X connect 45 1 46 0;
-#X connect 46 0 51 0;
-#X connect 46 1 47 0;
-#X connect 47 0 52 0;
-#X connect 48 0 25 0;
-#X connect 49 0 24 0;
-#X connect 50 0 23 0;
-#X connect 51 0 22 0;
-#X connect 52 0 21 0;
-#X coords 0 -1 1 1 150 120 1 720 10;
+#X connect 13 0 14 0;
+#X connect 14 0 18 1;
+#X connect 15 0 14 0;
+#X connect 16 0 15 0;
+#X connect 17 0 16 0;
+#X connect 18 0 24 0;
+#X connect 19 0 18 2;
+#X connect 20 0 18 2;
+#X connect 21 0 18 2;
+#X connect 22 0 18 2;
+#X connect 23 0 18 2;
+#X connect 24 0 25 0;
+#X connect 25 0 29 0;
+#X connect 26 0 25 3;
+#X connect 26 0 25 1;
+#X connect 26 0 25 2;
+#X connect 27 0 24 0;
+#X connect 28 0 27 0;
+#X connect 29 0 31 0;
+#X connect 32 0 11 0;
+#X connect 33 0 16 0;
+#X connect 34 0 35 0;
+#X connect 35 0 47 0;
+#X connect 35 1 1 0;
+#X connect 36 0 37 0;
+#X connect 37 0 42 0;
+#X connect 37 1 38 0;
+#X connect 38 0 43 0;
+#X connect 38 1 39 0;
+#X connect 39 0 44 0;
+#X connect 39 1 40 0;
+#X connect 40 0 45 0;
+#X connect 40 1 41 0;
+#X connect 41 0 46 0;
+#X connect 42 0 23 0;
+#X connect 43 0 22 0;
+#X connect 44 0 21 0;
+#X connect 45 0 20 0;
+#X connect 46 0 19 0;
+#X connect 47 0 6 0;
+#X connect 48 0 58 0;
+#X connect 49 0 58 1;
+#X connect 50 0 51 0;
+#X connect 50 0 53 0;
+#X connect 50 0 55 0;
+#X connect 51 0 50 1;
+#X connect 52 0 50 1;
+#X connect 53 0 36 0;
+#X connect 54 0 50 0;
+#X connect 55 0 56 0;
+#X connect 56 0 57 0;
+#X connect 57 0 52 0;
+#X connect 58 0 54 0;
+#X coords 0 -1 1 1 160 120 2 720 10;

@@ -1,0 +1,27 @@
+#N canvas 553 95 873 761 10;
+#X msg 17 19 create;
+#X msg 34 44 destroy;
+#X obj 74 98 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0 1
+;
+#X msg 56 70 reset;
+#X obj 17 165 loadbang;
+#X msg 17 189 \; renderinit 0;
+#X obj 17 133 gemwin 50;
+#X obj 198 17 vfx;
+#X obj 523 267 pix_mix;
+#X obj 523 286 pix_texture;
+#X obj 523 305 square 4;
+#X obj 351 17 vfx;
+#X obj 199 272 hsl 300 20 0 1 0 0 xfade empty empty -2 -8 0 10 -262144
+-1 -1 14400 1;
+#X obj 569 247 r xfade;
+#X connect 0 0 6 0;
+#X connect 1 0 6 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 0;
+#X connect 4 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 11 0 8 1;
+#X connect 13 0 8 2;
