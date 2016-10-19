@@ -117,16 +117,16 @@ void serialEvent( Serial s )
       switch( electrodeIndex )
       {
         case 0:
-          myMessage = new OscMessage("/note0");
+          myMessage = new OscMessage("/trigger0");
           break;
         case 1:
-          myMessage = new OscMessage("/note1");
+          myMessage = new OscMessage("/trigger1");
           break;
         case 2:
-          myMessage = new OscMessage("/note2");
+          myMessage = new OscMessage("/trigger2");
           break;
         case 3:
-          myMessage = new OscMessage("/note3");
+          myMessage = new OscMessage("/trigger3");
           break;
         default:
           myMessage = new OscMessage("/default");

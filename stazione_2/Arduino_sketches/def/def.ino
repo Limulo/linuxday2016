@@ -1,4 +1,4 @@
-/* 
+o/* 
  *  Use this sketch with this Processing Code
 
 import processing.serial.*;
