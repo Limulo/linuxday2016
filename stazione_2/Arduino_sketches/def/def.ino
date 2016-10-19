@@ -1,68 +1,11 @@
-o/* 
- *  Use this sketch with this Processing Code
-
-import processing.serial.*;
-
-Serial bluetooth;
-boolean lit = false;
-
-color base = color(200, 200, 0);
-color pressed = color(120, 0, 120);
-
-void setup()
-{
-  size(640, 480);
-  background(120);
-  
-  //println(Serial.list());
-  bluetooth = new Serial(this, "/dev/tty.blue_limulo-RNI-SPP", 115200);
-  
-}
-
-void draw()
-{   
-  noStroke();
-  if(lit)
-    fill(pressed);
-  else
-    fill(base);
-  rect(50, 50, 80, 80);
-}
-
-void mousePressed()
-{
-  if((isInRange(mouseX, 50, 130)) && (isInRange(mouseY, 50, 130)))
-  {
-    if(lit)
-    {
-      lit = false;
-      bluetooth.write('0');
-    }
-    else
-    {
-      lit = true;
-      bluetooth.write('1');
-    }
-  }
-}
-
-boolean isInRange(int val, int dim1, int dim2)
-{
-  if(val >= dim1 && val <= dim2)
-    return true;
-  else
-    return false;
-}
-*/
-
 /* Mic ********************************************************************/
-#include "Mic.h"
-#define MIC A12
-Mic mic;
+//#include "Mic.h"
+//#define MIC A12
+//Mic mic;
 
 // POT
-#define POT A7
-unsigned int threshold = 800;
+//#define POT A7
+//unsigned int threshold = 800;
 
 /* Touch ******************************************************************/
 #include <Wire.h>
@@ -76,9 +19,9 @@ boolean bTouched[ N_ELECTRODE ];
 
 /* Relay ******************************************************************/
 #include "Relay.h"
-#define NUM_RELAYS 3
+#define NUM_RELAYS 2
 #define RELAY1 22
-Relay relays[3];
+Relay relays[NUM_RELAYS];
 
 /* Serial *****************************************************************/
 boolean bSendSerial;
@@ -98,7 +41,7 @@ void setup()
   bSendSerial = false;
 
   /* Mic ******************************************************************/
-  mic.init( MIC, 50 );
+  //mic.init( MIC, 50, threshold );
 
   /* Touch ****************************************************************/
   TOUCH_init();
@@ -113,20 +56,23 @@ void setup()
 // LOOP ////////////////////////////////////////////////////////////////////
 void loop() 
 {
+  /* MIC stuff
   threshold = analogRead( POT );
-  
+  if( (mic.getPeakToPeak( threshold ) > threshold) && !relays[0].getStatus() )
+  { 
+    // Tunr ON the RELAY1 only if it is off
+    relays[0].turnOn();
+    Serial.println("\tMic ON;");
+  }
+  */
+
+  /*
   relays[0].update();
   //relays[1].update();
   //relays[2].update();
-
-  TOUCH_read( bSendSerial );
+  */
   
-  if( (mic.getPeakToPeak() > threshold) && !relays[0].getStatus() )
-  { 
-    //Serial.println( threshold );
-    // Tunr ON the RELAY1 only if it is off
-    relays[0].turnOn();
-  }
+  TOUCH_read( bSendSerial );
 }
 
 // TOUCH BOX ///////////////////////////////////////////////////////////////////////////
@@ -135,10 +81,10 @@ void TOUCH_init()
   // TOUCHBOX
   if (!cap.begin(0x5A)) 
   {
-    //Serial.println( "MPR121 not found, check wiring?" );
+    Serial.println( "MPR121 not found, check wiring?" );
     while(1);
   }
-  //Serial.println( "MPR121 found!" ); 
+  Serial.println( "MPR121 found!" ); 
 
   int i;
   for(i=0; i<9; i++)
@@ -174,7 +120,7 @@ void TOUCH_read( boolean b )
       if( i == N_ELECTRODE-1 )
       {
         //digitalWrite( relays[2], bTouched[i]);
-        relays[2].turnOn();
+        relays[1].turnOn();
       }
     }
     
@@ -190,7 +136,7 @@ void TOUCH_read( boolean b )
       if( i == N_ELECTRODE-1 )
       {
         //digitalWrite( relays[2], bTouched[i]);
-        relays[2].turnOff();
+        relays[1].turnOff();
       }
     }    
   }
@@ -253,10 +199,10 @@ void serialEvent1()
       cap.reset();
       break;
     case '1':
-      relays[1].turnOn();
+      relays[0].turnOn();
       break;
     case '0':
-      relays[1].turnOff();
+      relays[0].turnOff();
       break;
     default:
       // do nothing
