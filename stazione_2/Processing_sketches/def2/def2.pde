@@ -179,14 +179,6 @@ void keyPressed()
   }
 }
 
-void mousePressed()
-{
-  if( button.update(mouseX, mouseY) )
-    s_port.write('1');
-  else
-    s_port.write('0');
-}
-
 // CUSTOM /////////////////////////////////////////////////////////////////////////
 void draw_other_info()
 {
