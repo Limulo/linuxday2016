@@ -1,6 +1,11 @@
+s.meter;
 x = Synth.new(\space);
 y = Synth.new(\ele3);
 j = Synth.new(\ele4);
+
+x.free;
+y.free;
+j.free;
 
 // OSC messages *****************************************************************************************************************
 (
@@ -89,8 +94,6 @@ z.pause;
 x.set(\maxdelTime, 1, \delTime, 0.8, \decTime, 3);
 x.set(\noiseFreq, 4, \noiseMul, 36);
 x.set(\sawfreqL, 4, \sawFreqR, 4.125, \sawMul, 1, \sawPhaseL, 0, \sawPhaseR, 0.5);
-x.free;
-y.free;
-j.free;
+
 
 s.quit;
