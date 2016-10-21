@@ -32,6 +32,15 @@
         
         <li class="p-stazione-2"><a href="#stazione-2">Station 2</a></li>
       
+        
+        <li class="p-stazione-3"><a href="#stazione-3">Station 3</a></li>
+      
+        
+        <li class="p-stazione-4"><a href="#stazione-4">Station 4</a></li>
+      
+        
+        <li class="p-note"><a href="#note">note</a></li>
+      
     </ul></nav>
 
 
@@ -212,11 +221,6 @@ I sostenitori del software libero saranno ripagati da un trillo di campanelli e 
   <li>Arduino UNO</li>
 </ul>
 
-<h4>Riferimenti</h4>
-<ul>
-  <li>Qui il <a href="https://github.com/Limulo/videotavolo">link</a> al repository del progetto <strong>SoundFace</strong>;</li>
-</ul>
-
 
         </div>
       </div>
@@ -235,13 +239,13 @@ I sostenitori del software libero saranno ripagati da un trillo di campanelli e 
         <div class="container ">
           <h4>Stazione 2</h4>
 
-<p><img src="img/stations/station_2.png" alt="stazione 2" /></p>
+<p><img src="img/stations/station_2bis.png" alt="stazione 2" /></p>
 
 <p>Con la <strong>stazione 2</strong> sperimentiamo con altre possibili interazioni, tutte gestite da una scheda <strong>Arduino Mega</strong>:</p>
 <ul>
-  <li>abbiamo un <strong>microfono</strong> ad elettrete che, se sollecitato opportunamente (battendo le mani ad esempio), premette l’attauzione di una particolare azione, come ad esempio l’accensione di una lampada!</li>
-  <li>abbiamo uno sketch realizzato in <strong>Processing</strong> che mostra a schermo una semplice interfaccia utente: l’interfaccia mostra un pulsante che, se cliccato, causa una nuova azione.</li>
-  <li>Infine alcuni <strong>elettrodi</strong> fungono da <strong>sensori capacitivi</strong>, ognuno dei quali associato con un diverso comportamento.</li>
+  <li>Alcuni <strong>elettrodi</strong> fungono da <strong>sensori capacitivi</strong>, ognuno dei quali associato con un diverso comportamento. Alcuni causano l’invio di messaggi ad uno sketch di <strong>Processing</strong> in esecuzione su di un computer che comunica con Arduino tramite protocollo seriale via <strong>Bluetooth</strong>. Il tocco sugli elettrodi causa la generazione di una figura colorata a schermo.</li>
+  <li>Altri elettrodi invece provocano l’invio di messaggi <strong>OSC</strong> ad un altro ocomputer. Quest’ultimo è connesso alla stessa rete locale rispetto a quelo che comunica serialmente con Arduino, e si occupa di interpretare i messaggi <em>OSC</em> in ingresso come suoni generati in tempo reale da alcuni sintetizzatori programmati con <strong>SuperCollider</strong>.</li>
+  <li>Infine un ultimo elettrodo provoca l’accensione di una lampadina, connessa ad Arduino grazie ad un modulo <em>relay</em>.</li>
 </ul>
 
 <h4>Software</h4>
@@ -254,6 +258,91 @@ I sostenitori del software libero saranno ripagati da un trillo di campanelli e 
 <ul>
   <li>Arduino Mega</li>
 </ul>
+
+
+        </div>
+      </div>
+    
+      
+      <div id="stazione-3" class="section p-stazione-3">
+        
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-cog fa-spin fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">Station 3</h5>
+        </div>
+        
+        <div class="container ">
+          <h4>Stazione 3</h4>
+
+<p><img src="img/stations/station_3.png" alt="stazione 3" /></p>
+
+<p>La <strong>stazione 3</strong> mostra le grandi capacità creative dell’ambiente di programmazione <strong>Sonic Pi</strong>, un ambiente per ‘<em>programmazione dal vivo</em>’ (<em>live coding</em>, ovvero quando il confine tra programmazione e performance musicale dal vivo diventa sempre più sottile!)</p>
+
+<p>Il tutto in esecuzione sul microcomputer <strong>RaspberryPi</strong>!</p>
+
+<h4>Software</h4>
+<ul>
+  <li>SonicPi</li>
+</ul>
+
+<h4>Hardware</h4>
+<ul>
+  <li>Raspberry Pi 3 mod. B</li>
+</ul>
+
+
+        </div>
+      </div>
+    
+      
+      <div id="stazione-4" class="section p-stazione-4">
+        
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-cog fa-spin fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">Station 4</h5>
+        </div>
+        
+        <div class="container ">
+          <h4>Stazione 4</h4>
+
+<p><img src="img/stations/station_4.png" alt="stazione 4" /></p>
+
+<p>La <strong>stazione 4</strong> presenta una serie di sintetizzatori programmati in <strong>SuperCollider</strong> i quali vengono sollecitati da messaggi <strong>OSC</strong> provenienti dal computer della [stazione 2].</p>
+
+<h4>Software</h4>
+<ul>
+  <li>SuperCollider</li>
+</ul>
+
+
+        </div>
+      </div>
+    
+      
+      <div id="note" class="section p-note">
+        
+        <div class="subtlecircle sectiondivider faicon">
+          <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-code fa-stack-1x"></i>
+          </span>
+          <h5 class="icon-title">note</h5>
+        </div>
+        
+        <div class="container ">
+          <h4>Note</h4>
+
+<p>Tutti i <strong>codoce sorgente</strong> relativi ai programmi in esecuzione sulle varie stazioni sono disponibili e scaricabili dal nostro <strong>Repository GitHub</strong>. Se sei interessato, clicca sulla fascia colorata nell’angolo in alto a destra.</p>
+
+<p>Il codice sorgente per il progetto <strong>SoundFace</strong> è disponibile si <a href="https://github.com/Limulo/videotavolo">quest’altro repository</a>.</p>
+
+<p>Per ogni richiesta, dubbio o suggerimento, ti invitiamo a scriverci all’indirizzo <strong>info[at]limulo.net</strong> o a visitare il nostro sito web <a href="http://www.limulo.net">limulo.net</a>.</p>
 
 
         </div>

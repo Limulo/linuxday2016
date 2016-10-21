@@ -536,6 +536,30 @@ html { box-sizing: border-box; }
   
   
   
+  nav .p-note { border-color: #111111; }
+  #note { background-color: #111111 !important; color: #f8f8f8; }
+  #note a { color: #f8f8f8; }
+  #note .sectiondivider { color: #111111; }
+
+  
+  
+  
+  nav .p-stazione-4 { border-color: #c869bf; }
+  #stazione-4 { background-color: #c869bf !important; color: #111111; }
+  #stazione-4 a { color: #111111; }
+  #stazione-4 .sectiondivider { color: #c869bf; }
+
+  
+  
+  
+  nav .p-stazione-3 { border-color: #0fbfcf; }
+  #stazione-3 { background-color: #0fbfcf !important; color: #111111; }
+  #stazione-3 a { color: #111111; }
+  #stazione-3 .sectiondivider { color: #0fbfcf; }
+
+  
+  
+  
   nav .p-stazione-2 { border-color: #9bcf2f; }
   #stazione-2 { background-color: #9bcf2f !important; color: #111111; }
   #stazione-2 a { color: #111111; }

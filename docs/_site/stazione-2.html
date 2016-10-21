@@ -1,12 +1,12 @@
 <h4>Stazione 2</h4>
 
-<p><img src="img/stations/station_2.png" alt="stazione 2" /></p>
+<p><img src="img/stations/station_2bis.png" alt="stazione 2" /></p>
 
 <p>Con la <strong>stazione 2</strong> sperimentiamo con altre possibili interazioni, tutte gestite da una scheda <strong>Arduino Mega</strong>:</p>
 <ul>
-  <li>abbiamo un <strong>microfono</strong> ad elettrete che, se sollecitato opportunamente (battendo le mani ad esempio), premette l’attauzione di una particolare azione, come ad esempio l’accensione di una lampada!</li>
-  <li>abbiamo uno sketch realizzato in <strong>Processing</strong> che mostra a schermo una semplice interfaccia utente: l’interfaccia mostra un pulsante che, se cliccato, causa una nuova azione.</li>
-  <li>Infine alcuni <strong>elettrodi</strong> fungono da <strong>sensori capacitivi</strong>, ognuno dei quali associato con un diverso comportamento.</li>
+  <li>Alcuni <strong>elettrodi</strong> fungono da <strong>sensori capacitivi</strong>, ognuno dei quali associato con un diverso comportamento. Alcuni causano l’invio di messaggi ad uno sketch di <strong>Processing</strong> in esecuzione su di un computer che comunica con Arduino tramite protocollo seriale via <strong>Bluetooth</strong>. Il tocco sugli elettrodi causa la generazione di una figura colorata a schermo.</li>
+  <li>Altri elettrodi invece provocano l’invio di messaggi <strong>OSC</strong> ad un altro ocomputer. Quest’ultimo è connesso alla stessa rete locale rispetto a quelo che comunica serialmente con Arduino, e si occupa di interpretare i messaggi <em>OSC</em> in ingresso come suoni generati in tempo reale da alcuni sintetizzatori programmati con <strong>SuperCollider</strong>.</li>
+  <li>Infine un ultimo elettrodo provoca l’accensione di una lampadina, connessa ad Arduino grazie ad un modulo <em>relay</em>.</li>
 </ul>
 
 <h4>Software</h4>
