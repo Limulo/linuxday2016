@@ -1,6 +1,6 @@
 (
 SynthDef.new(\space, {
-	arg t_gate = 0, amp = 1, maxDelTime = 1, delTime= 0.3, decTime = 2, noiseFreq=3, noiseMul=24, sawFreqL=5, sawFreqR= 5.123, sawMul=3, sawAdd=80, sawPhaseL=0, sawPhaseR=0.125;
+	arg t_gate = 0, amp = 0.5, maxDelTime = 1, delTime= 0.3, decTime = 2, noiseFreq=3, noiseMul=24, sawFreqL=5, sawFreqR= 5.123, sawMul=3, sawAdd=80, sawPhaseL=0, sawPhaseR=0.125;
 	var freq, sig, env;
 	freq = midicps(
 		LFNoise1.ar(
@@ -21,7 +21,7 @@ SynthDef.new(\space, {
 
 (
 SynthDef.new(\pm,{
-	arg midi=60, tone=3, art=1, amp=0.8, pan=0;
+	arg midi=60, tone=3, art=1, amp=0.05, pan=0;
 	var env, out, mod, freq;
 
 	freq = midi.midicps;
@@ -45,7 +45,7 @@ SynthDef.new(\pm,{
 SynthDef.new(\ele3,
 	{
 
-	arg midi = 60, phase= 10, duty = 0.125, amp=0.8, t_gate=0;
+	arg midi = 60, phase= 10, duty = 0.125, amp=0.1, t_gate=0;
 	var sig, env;
 	sig = VarSaw.ar(midi.midicps!16, phase, duty);
 	env = EnvGen.kr(Env.new([0, 0.5, 0.8, 0.2, 0],[0.1, 0.1, 0.2, 0.5],[\sine, 2, -2, -2]), t_gate);
@@ -74,7 +74,7 @@ SynthDef.new(\ele4,
 		f5 = f5.midicps * LFNoise0.kr(SinOsc.kr(12).range(0.1, 1));
 
 		sig = DynKlang.ar(`[[f1, f2, f2, f4, f5], [0.4, 0.4, 0.2, 0.5, 0.3], [phase, phase, phase, phase, phase]], 1, 0);
-		amp = Dust.ar(1).exprange(0.5, 1.2);
+		amp = Dust.ar(1).exprange(0.2, 0.7);
 		env = EnvGen.kr(Env.perc(0.01, 3, curve: -2), t_gate);
 		sig = sig * amp;
 		sig = sig * env;
