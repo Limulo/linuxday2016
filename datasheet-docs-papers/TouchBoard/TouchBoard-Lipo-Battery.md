@@ -4,11 +4,10 @@
 You can get hold of a Touch Board compatible battery from many suppliers – sadly we no longer supply them ourselves due to the difficulty in shipping them. Here are a few points to double-check before purchasing:
 
 * Is it a Lithium Polymer battery (also known as a LiPo for short)? Only these batteries are rechargeable with the Touch Board.
-    Does it have its own onboard protection circuitry? This is very important for use with the Touch Board. You can normally tell these apart from unprotected types by the yellow taped section at the wire end of the battery, but be sure to ask your supplier to confirm this for you.
-    Is it a single cell LiPo? – Be careful of multi cell LiPo batteries often sold from Radio Control shops. Only single cells are compatible – you can usually tell as their voltage is quoted as 3.7V, not higher.
-    Does it have a 2 way JST PH connector (pin 1 positive, pin 2 negative)? – It is fairly recognisable, but check with the supplier to be sure.
-    Does it have a capacity rating of at least 400mAh? – A nice size is around 800mA-1200mAh for most use cases.
-
+* Does it have its own onboard protection circuitry? This is very important for use with the Touch Board. You can normally tell these apart from unprotected types by the yellow taped section at the wire end of the battery, but be sure to ask your supplier to confirm this for you.
+* Is it a single cell LiPo? – Be careful of multi cell LiPo batteries often sold from Radio Control shops. Only single cells are compatible – you can usually tell as their voltage is quoted as 3.7V, not higher.
+* Does it have a 2 way JST PH connector (pin 1 positive, pin 2 negative)? – It is fairly recognisable, but check with the supplier to be sure.
+* Does it have a capacity rating of at least 400mAh? – A nice size is around 800mA-1200mAh for most use cases.
 
 
 # Battery connector type
