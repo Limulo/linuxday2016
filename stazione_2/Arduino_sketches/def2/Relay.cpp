@@ -32,6 +32,8 @@ void Relay::turnOn()
   t_start_relay = millis();
   digitalWrite( pin , bStatus );
   //Serial.print("\tRelay: "); Serial.println( bStatus );
+
+	// I've found that the longer this delay is, the longer the sketch will work without frezing
   delay(5);  
 }
 
@@ -41,6 +43,8 @@ void Relay::turnOff()
   //t_start_relay = millis();
   digitalWrite( pin , bStatus );
   //Serial.print("\tRelay: "); Serial.println( bStatus );
+
+	// I've found that the longer this delay is, the longer the sketch will work without frezing
   delay(5);  
 }
 
