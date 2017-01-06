@@ -27,6 +27,7 @@ La comunicazione tra mite USB è ancora attiva ma soltanto per quanto riguarda l
 
 ### LINKS e RIFERIMENTI
 * [link](http://www.open-electronics.org/the-power-of-arduino-this-unknown/) un articolo molto interessante si parla di come alimentare il nostro Arduino quando lo si voglia sfruttare in sitauzioni in cui non possa essere connesso ad un computer (e non solo)! 
+* diagramma da [pigixxx](http://www.pighixxx.com/test/portfolio-items/uno/?portfolioID=314)
 * [questo](http://arduino-info.wikispaces.com/ArduinoPinCurrent) articolo esamina nello specifico le caratteristiche dei microcontrollori ATMEL montati sulle schede Arduino;
 * ecco un altro [link](http://www.electricrcaircraftguy.com/2014/02/arduino-power-current-and-voltage.html) sull'argomento.
 
